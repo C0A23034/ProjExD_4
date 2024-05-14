@@ -72,6 +72,15 @@ class Bird(pg.sprite.Sprite):
         self.rect.center = xy
         self.speed = 10
 
+    def bird_check(self):
+        """
+        シフトを押している間速さを変える関数
+        """
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_LSHIFT]:
+            self.speed = 20
+
+
     def change_img(self, num: int, screen: pg.Surface):
         """
         こうかとん画像を切り替え，画面に転送する
@@ -273,6 +282,7 @@ def main():
     tmr = 0
     clock = pg.time.Clock()
     while True:
+        bird.bird_check() #追加機能1
         key_lst = pg.key.get_pressed()
         for event in pg.event.get():
             if event.type == pg.QUIT:
