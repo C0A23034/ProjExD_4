@@ -245,16 +245,16 @@ class EMP(pg.sprite.Sprite):
     def __init__(self,enes, bombs, Surface):
         
         super().__init__()
+        self.image = pg.Surface((WIDTH, HEIGHT))
+        pg.draw.rect(self.image, (0, 255, 255),(0, 0, WIDTH, HEIGHT))
+        self.image.set_alpha(80)
+        self.rect = self.image.get_rect()
         for ene in enes:
             ene.interval = math.inf
             ene.image = pg.transform.laplacian(self.image)
         for bomb in bombs:
             bomb.speed = 3
             bomb.state = "inactive"
-        self.image = pg.Surface((WIDTH, HEIGHT))
-        pg.draw.rect(self.image, (0, 255, 255),(0, 0, WIDTH, HEIGHT))
-        self.image.set_alpha(80)
-        self.rect = self.image.get_rect()
         
 
 def main():
